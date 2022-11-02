@@ -32,6 +32,10 @@
     "class-methods-use-this": "off",
     "operator-linebreak": "off",
     "implicit-arrow-linebreak": "off",
-    "react/jsx-no-useless-fragment": "off"
+    "react/jsx-no-useless-fragment": "off",
+    "no-plusplus": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "import/no-cycle": "off",
+    "no-case-declarations": "off"
   }
 }
