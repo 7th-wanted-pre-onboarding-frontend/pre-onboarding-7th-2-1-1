@@ -7,6 +7,7 @@ const Container = styled.article`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: 60px;
 `;
 
 export default Container;
