@@ -7,7 +7,7 @@ import Organisms from '.';
 export default function CarList({ selectedFilter }) {
   const { isLoading, data } = useGetCars();
   const cars = useMemo(() => {
-    const result = data || [];
+    const result = data ? Object.values(data) : [];
     if (selectedFilter === 'all') {
       return result;
     }

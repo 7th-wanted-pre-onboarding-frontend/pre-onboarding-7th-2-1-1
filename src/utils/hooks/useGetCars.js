@@ -17,7 +17,13 @@ export default function useGetCars() {
       const {
         data: { payload }
       } = await CarsService.getCars();
-      const cars = payload.map((item) => new Car(item));
+      const cars = payload.reduce(
+        (result, item) => ({
+          ...result,
+          [item.id]: new Car(item)
+        }),
+        {}
+      );
       onSetCarList(cars);
     } catch (e) {
       setIsError(() => true);
