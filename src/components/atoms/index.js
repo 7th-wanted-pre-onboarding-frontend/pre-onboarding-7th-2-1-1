@@ -7,6 +7,9 @@ import Body2 from './Body2';
 import Label from './Label';
 import ImageWrapper from './ImageWrapper';
 import ListHeaderWrapper from './ListHeaderWrapper';
+import HeaderWrapper from './HeaderWrapper';
+import Container from './Container';
+import CarItemWrapper from './CarItemWrapper';
 
 export default {
   LargeTitle,
@@ -17,5 +20,8 @@ export default {
   Body2,
   Label,
   ImageWrapper,
-  ListHeaderWrapper
+  HeaderWrapper,
+  ListHeaderWrapper,
+  Container,
+  CarItemWrapper
 };
