@@ -1,0 +1,32 @@
+name: Continuous Deployment when merged into main
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Continuous_Integration:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: 체크아웃 액션을 사용합니다.
+        uses: actions/checkout@v3
+      - name: Node.js ${{ matrix.node-version }}을 설치합니다.
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Npm 패키지를 설치합니다.
+        run: npm ci
+      - name: 프로젝트를 빌드합니다.
+        run: npm run build
+      - name: S3에 배포를 시작합니다.
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-northeast-2'
+          SOURCE_DIR: 'build'
