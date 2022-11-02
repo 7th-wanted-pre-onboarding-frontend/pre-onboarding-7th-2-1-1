@@ -3,15 +3,16 @@ import Car from '../classes/car';
 import { useCarsDispatch, useCarsState } from '../contexts/CarProvider';
 import CarsService from '../services/cars.service';
 
-export default function useGetCars() {
+export default function useGetCarDetail(id) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState('');
   const { state } = useCarsState();
-  const { onSetCarList } = useCarsDispatch();
-  const data = useMemo(() => state.list || {}, [state]);
+  const { onSetCarList, onSetCarDetail } = useCarsDispatch();
+  const data = useMemo(() => state.list[id] || {}, [state, id]);
+  const areCarList = Object.keys(state.list).length > 0;
 
-  const onGetCarList = useCallback(async () => {
+  const onGetCarDetail = useCallback(async () => {
     setIsLoading(() => true);
     try {
       const {
@@ -25,6 +26,7 @@ export default function useGetCars() {
         {}
       );
       onSetCarList(cars);
+      onSetCarDetail(cars[id]);
     } catch (e) {
       setIsError(() => true);
       setError(() => e?.message || '데이터를 가져오는데 실패하였습니다.');
@@ -34,8 +36,13 @@ export default function useGetCars() {
   }, []);
 
   useEffect(() => {
-    onGetCarList();
-  }, []);
+    if (!areCarList) {
+      onGetCarDetail();
+    } else {
+      setIsLoading(false);
+      onSetCarDetail(data);
+    }
+  }, [id]);
 
   return {
     data,
