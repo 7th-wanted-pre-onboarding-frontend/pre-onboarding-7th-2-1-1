@@ -3,3 +3,14 @@
 
 npm run format
 npm run lint
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+ 
+if [[ "$BRANCH" == "main" ]]; then
+    echo -e "[ $BRANCH ] 브랜치에 커밋이 불가합니다."
+    echo -e "다른 브랜치에 커밋을 해주세요."
+    exit 1
+fi
+ 
+ 
+exit 0
