@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
 const Label = styled.div`
-  display: inline-block;
-  padding: 5px 18px;
+  display: ${({ display }) => display || 'inline-block'};
+  align-items: ${({ alignItems }) => alignItems || null};
+  justify-content: ${({ justifyContent }) => justifyContent || null};
+  padding: ${({ padding }) => padding || '5px 18px'};
+  width: ${({ width }) => width || 'auto'};
+  height: ${({ height }) => height || 'auto'};
+  white-space: nowrap;
   border-radius: 9999px;
   ${({ color, theme }) => {
     switch (color) {
@@ -19,7 +24,7 @@ const Label = styled.div`
       case 'gray':
         return `
           background-color: ${theme.colors.gray};
-          color: ${theme.colors.white};
+          color: ${theme.colors.black};
         `;
       default:
         throw new Error(
