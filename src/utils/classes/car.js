@@ -3,7 +3,10 @@ class Car {
     id,
     attribute: { brand, name, segment, fuelType, imageUrl },
     amount,
-    createdAt
+    createdAt,
+    startDate,
+    insurance,
+    additionalProducts
   }) {
     this.id = id;
     this.brand = brand;
@@ -16,6 +19,9 @@ class Car {
     this.createdAt = createdAt;
     this.isNew = this.#newModelCheck(createdAt);
     this.amount = amount.toLocaleString();
+    this.startDate = this.#convertStartDate(startDate);
+    this.insurance = insurance;
+    this.additionalProducts = additionalProducts;
   }
 
   #convertSegment(segment) {
@@ -52,6 +58,18 @@ class Car {
     const diff = current - past;
     const limit = 60 * 60 * 1000 * 24;
     return diff <= limit;
+  }
+
+  #convertStartDate(startDate) {
+    const week = ['일', '월', '화', '수', '목', '금', '토'];
+    const schedule = new Date(startDate);
+    const month = schedule.getMonth() + 1;
+    const date = schedule.getDate();
+    const day = week[schedule.getDay()];
+
+    return `${month < 10 ? `0${month}` : month}월 ${
+      date < 10 ? `0${date}` : date
+    }일 (${day}) 부터`;
   }
 }
 

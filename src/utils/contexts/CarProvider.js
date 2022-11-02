@@ -13,20 +13,24 @@ export const useCarsDispatch = () => useContext(CarsDispatchContext);
 function reducer(state, action) {
   switch (action.type) {
     case 'SET_CAR_LIST':
-      const data = action?.data || [];
+      const data = action?.data || {};
       return {
         ...state,
-        list: [...state.list, ...data]
+        list: { ...state.list, ...data }
       };
-    case 'GET_CAR_DETAIL':
-      return state;
+    case 'SET_CAR_DETAIL':
+      return {
+        ...state,
+        detail: action?.detail
+      };
     default:
       return state;
   }
 }
 
 const initialState = {
-  list: []
+  list: {},
+  detail: {}
 };
 
 export default function CarsProvider({ children }) {
@@ -35,10 +39,14 @@ export default function CarsProvider({ children }) {
     (data) => dispatch({ type: 'SET_CAR_LIST', data }),
     []
   );
+  const onSetCarDetail = useCallback(
+    (detail) => dispatch({ type: 'SET_CAR_DETAIL', detail }),
+    []
+  );
 
   return (
     <CarsContext.Provider value={{ state }}>
-      <CarsDispatchContext.Provider value={{ onSetCarList }}>
+      <CarsDispatchContext.Provider value={{ onSetCarList, onSetCarDetail }}>
         {children}
       </CarsDispatchContext.Provider>
     </CarsContext.Provider>
