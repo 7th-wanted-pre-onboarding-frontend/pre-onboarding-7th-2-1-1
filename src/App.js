@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './components/GlobalStyle';
 import Router from './components/Router';
+import CarsProvider from './utils/contexts/CarProvider';
 import theme from './utils/constants/theme';
 
 function App() {
@@ -9,7 +10,9 @@ function App() {
     <div className='App'>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Router />
+        <CarsProvider>
+          <Router />
+        </CarsProvider>
       </ThemeProvider>
     </div>
   );
