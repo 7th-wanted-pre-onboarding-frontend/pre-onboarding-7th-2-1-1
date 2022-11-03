@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import useGetCarDetail from '../../utils/hooks/useGetCarDetail';
+import MetaTag from '../MetaTag';
 import Molecules from '../molecules';
 import Organisms from '../organisms';
 import Template from '../templates/Template';
@@ -31,21 +32,29 @@ export default function Detail() {
   }
 
   return (
-    <Template>
-      <Molecules.DetailProfile
-        imageUrl={imageUrl}
-        alt={`${name}_photo`}
-        name={name}
-        brand={brand}
-        amount={amount}
+    <>
+      <MetaTag
+        title={`${brand} ${name}`}
+        ogTitle={`${brand} ${name}`}
+        ogDescription={`월 ${amount} 원`}
+        ogImage={imageUrl}
       />
-      <Organisms.CarInfo
-        segment={segmentText}
-        fuelType={fuelTypeText}
-        startDate={startDate}
-      />
-      <Organisms.Insurance insurance={insurance} />
-      <Organisms.AdditionalProducts additionalProducts={additionalProducts} />
-    </Template>
+      <Template>
+        <Molecules.DetailProfile
+          imageUrl={imageUrl}
+          alt={`${name}_photo`}
+          name={name}
+          brand={brand}
+          amount={amount}
+        />
+        <Organisms.CarInfo
+          segment={segmentText}
+          fuelType={fuelTypeText}
+          startDate={startDate}
+        />
+        <Organisms.Insurance insurance={insurance} />
+        <Organisms.AdditionalProducts additionalProducts={additionalProducts} />
+      </Template>
+    </>
   );
 }
