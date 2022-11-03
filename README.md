@@ -25,13 +25,13 @@
 
 1. 프로젝트 관련 라이브러리를 설치합니다.
 
-``` bash
+```bash
 npm install
 ```
 
 2. 프로젝트를 실행합니다.
 
-``` bash
+```bash
 npm start
 ```
 
@@ -94,25 +94,27 @@ npm start
 # best practice 선정 이유
 
 ## 1. Atomic design pattern
+
 - 과제 요구사항인 [figma](https://www.figma.com/file/XdncFdXWdILLifRIJKqIi1/%EC%8B%A4%EB%AC%B4%ED%98%95-%EB%A9%B4%EC%A0%91---%EC%9B%B9-%ED%94%84%EB%A1%A0%ED%8A%B8?node-id=1%3A2)
-의 컴포넌트 설계 구조를 활용하여 Atomic design pattern을 도입했습니다.
+  의 컴포넌트 설계 구조를 활용하여 Atomic design pattern을 도입했습니다.
 
 - [토론](https://github.com/orgs/7th-wanted-pre-onboarding-frontend/discussions/19)을 통해 컴포넌트 설계 기준을 정의했습니다.
 
   - ADP 활용 기준
   - **`Atoms`** 는 요소의 **Style**만 담당한다.
-    -  **Atom**은 구현하고자 하는 페이지에 재 사용 되는 것을 염두 하여 **Style**을 구성하고 파일 이름을 정한다.
-    -  **ex)**  `Body1.js` , `Body2,js` , `Title3.js` , `Title4.js` , `Container.js` . . .
+    - **Atom**은 구현하고자 하는 페이지에 재 사용 되는 것을 염두 하여 **Style**을 구성하고 파일 이름을 정한다.
+    - **ex)** `Body1.js` , `Body2,js` , `Title3.js` , `Title4.js` , `Container.js` . . .
   - **`Molecules`** 는 **Atom**으로 구성된다.
-  - **`Organisms`** 는 [ **Atom** ,  **Molecule** ,  **Organism** ] 로 구성된다.
+  - **`Organisms`** 는 [ **Atom** , **Molecule** , **Organism** ] 로 구성된다.
 
 ## 2. 필터 기능 강화
 
 - 기존 필터에는 차량 크기에 대한 속성 4개 밖에 없었지만, 연료에 대한 속성 3개를 추가
 - 커스텀훅인 useSwiper로, 마우스 휠을 이용하거나 또는 드래그를 이용해서 스크롤을 넘길 수 있다.
 - 필터 메뉴는 연료 필터, 크기 필터를 선택할 수 있다.
-    - 둘 다 선택하지 않으면, All 활성화
-    - All 필터를 누르면: All 활성화, 두 필터 비활성화 처리
+
+  - 둘 다 선택하지 않으면, All 활성화
+  - All 필터를 누르면: All 활성화, 두 필터 비활성화 처리
 
 - [토론](https://github.com/orgs/7th-wanted-pre-onboarding-frontend/discussions/18)을 통해서 카테고리 바의 아이템 추가 및 필터 기능 강화
 
@@ -138,7 +140,8 @@ https://github.com/7th-wanted-pre-onboarding-frontend/pre-onboarding-7th-2-1-1/b
 
 - axios
 - styled-components
-    - styled-reset
+  - styled-reset
+
 ### dev
 
 - commitlint
