@@ -34,7 +34,7 @@ export default function useSwiper(props) {
 
       event.preventDefault();
 
-      return (function () {
+      return (function closure() {
         if (wheelingTimer === null) {
           position.scrollY = window.scrollY;
           window.addEventListener('scroll', noscroll);
@@ -53,7 +53,7 @@ export default function useSwiper(props) {
     [ref.current]
   );
 
-  const noscroll = function () {
+  const noscroll = function closure() {
     window.scrollTo(0, position.scrollY);
     return false;
   };
@@ -72,7 +72,7 @@ export default function useSwiper(props) {
     (event) => {
       let waiting = false;
 
-      return (function () {
+      return (function closure() {
         if (!waiting) {
           position.scrollLeft = ref.current.scrollLeft;
           position.clientX = event.clientX;
