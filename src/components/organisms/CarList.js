@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import useGetCars from '../../utils/hooks/useGetCars';
 import Atoms from '../atoms';
 import Organisms from '.';
@@ -8,12 +7,23 @@ import Molecules from '../molecules';
 export default function CarList({ selectedFilter }) {
   const { isLoading, data } = useGetCars();
   const cars = useMemo(() => {
-    const result = data ? Object.values(data) : [];
-    if (selectedFilter === 'all') {
-      return result;
+    let result = data ? Object.values(data) : [];
+    const isSelectedSegment = !!Object.keys(selectedFilter.segment).length;
+    const isSelectedFuelType = !!Object.keys(selectedFilter.fuelType).length;
+
+    if (isSelectedSegment) {
+      result = result.filter(
+        (item) => item.segment === selectedFilter.segment.id
+      );
     }
 
-    return result.filter((item) => item.segment === selectedFilter);
+    if (isSelectedFuelType) {
+      result = result.filter(
+        (item) => item.fuelType === selectedFilter.fuelType.id
+      );
+    }
+
+    return result;
   }, [data, selectedFilter]);
   const isEmpty = cars.length === 0;
 
@@ -56,7 +66,3 @@ function Empty() {
     </section>
   );
 }
-
-CarList.prototype = {
-  selectedFilter: PropTypes.string.isRequired
-};

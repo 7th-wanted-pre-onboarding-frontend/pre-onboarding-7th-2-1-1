@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import filters from '../../utils/constants/filters';
 import MetaTag from '../MetaTag';
 import Molecules from '../molecules';
 import Organisms from '../organisms';
 import Template from '../templates/Template';
 
 export default function Home() {
-  const [selectedFilter, setSelectedFilter] = useState('all');
-
+  const [selectedFilter, setSelectedFilter] = useState({
+    fuelType: {},
+    segment: {},
+    all: filters[0]
+  });
   return (
     <>
       <MetaTag
