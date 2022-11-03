@@ -17,6 +17,14 @@ const GlobalStyle = createGlobalStyle`
     all: unset;
     cursor: pointer;
   }
+
+  .scrollbar-hide {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      &::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera*/
+      }
+  }
 `;
 
 export default GlobalStyle;

@@ -36,6 +36,8 @@
     "no-plusplus": "off",
     "react/jsx-no-constructed-context-values": "off",
     "import/no-cycle": "off",
-    "no-case-declarations": "off"
+    "no-case-declarations": "off",
+    "wrap-iife": ["error", "inside"],
+    "no-use-before-define": "off"
   }
 }
